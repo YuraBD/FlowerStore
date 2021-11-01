@@ -35,4 +35,17 @@ public class Order {
     public void removeItem(Item item) {
         items.remove(item);
     }
+
+    public void processOrder() {
+        if (payment == null) {
+            System.out.println("Please set payment strategy");
+            return;
+        }
+        if (delivery == null) {
+            System.out.println("Please set delivery strategy");
+            return;
+        }
+        payment.pay(calculateTotalPrice());
+        delivery.deliver(items);
+    }
 }

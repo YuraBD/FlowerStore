@@ -1,9 +1,11 @@
 import decorators.BasketDecorator;
 import decorators.ItemDecorator;
 import decorators.RibbonDecorator;
+import delivery.PostDeliveryStrategy;
 import flowerstore.Item;
 import decorators.PaperDecorator;
 import flowerstore.*;
+import payment.CreditCardPaymentStrategy;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,6 +27,10 @@ public class Main {
         System.out.println(order.calculateTotalPrice());
         order.addItem(item3);
         System.out.println(order.calculateTotalPrice());
+        order.processOrder();
+        order.setDeliveryStrategy(new PostDeliveryStrategy());
+        order.setPaymentStrategy(new CreditCardPaymentStrategy());
+        order.processOrder();
         order.removeItem(item1);
         System.out.println(order.calculateTotalPrice());
         order.removeItem(item2);
