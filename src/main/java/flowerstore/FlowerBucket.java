@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ToString
-public class FlowerBucket {
-    List<FlowerPack> flowerPacks = new ArrayList<FlowerPack>();
+public class FlowerBucket extends  Item{
+    List<FlowerPack> flowerPacks = new ArrayList<>();
 
     public FlowerBucket() {
     }
@@ -24,4 +24,11 @@ public class FlowerBucket {
         return totalPrice;
     }
 
+    @Override
+    public String getDescription() {
+        return "FlowerBucket{" +
+                "flowerPacks=" + flowerPacks +
+                ", totalPacksPrice =" + getPrice() +
+                '}';
+    }
 }

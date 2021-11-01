@@ -1,29 +1,35 @@
+import decorators.BasketDecorator;
+import decorators.ItemDecorator;
+import decorators.RibbonDecorator;
+import flowerstore.Item;
+import decorators.PaperDecorator;
 import flowerstore.*;
 
 public class Main {
     public static void main(String[] args) {
-        FlowerPack flowerPack1 = new FlowerPack();
-        FlowerPack flowerPack2 = new FlowerPack();
-        int[] color = {127, 0, 0};
-        double price = 100;
-        for (int i = 0; i < 3; i++) {
-            flowerPack1.addFlower(new Flower(FlowerType.ROSE, color, price));
-        }
-        for (int i = 0; i < 3; i++) {
-            flowerPack2.addFlower(new Flower(FlowerType.CHAMOMILE, color, price));
-        }
-
-        FlowerBucket flowerBucket = new FlowerBucket();
-        flowerBucket.addFlowerPack(flowerPack1);
-        flowerBucket.addFlowerPack(flowerPack2);
-
-        Flower flower1 = new Flower(FlowerType.CHAMOMILE, new int[]{255,0,0}, 100);
-        Flower flower2 = new Flower(FlowerType.ROSE, color, price);
-        System.out.println(flower1);
-
-        Store store = new Store();
-        store.addFlowerBucket(flowerBucket);
-        System.out.println(store);
-        System.out.println(store.search(new Flower(FlowerType.ROSE, color, price)));
+        Item item1 = new Flower(FlowerType.ROSE, new int[]{255,0,0}, 100);
+        Item item2 = new FlowerPack(new Flower(FlowerType.ROSE, new int[]{255,0,0}, 100), 10);
+        Item item3 = new FlowerBucket();
+        FlowerPack flowerPack1 = new FlowerPack(new Flower(FlowerType.ROSE, new int[]{255,0,0}, 100), 7);
+        FlowerPack flowerPack2 = new FlowerPack(new Flower(FlowerType.CHAMOMILE, new int[]{255,0,255}, 10), 7);
+        ((FlowerBucket)item3).addFlowerPack(flowerPack1);
+        ((FlowerBucket)item3).addFlowerPack(flowerPack2);
+        System.out.println(item1.getPrice());
+        System.out.println(item2.getPrice());
+        System.out.println(item3.getPrice());
+        Order order = new Order();
+        System.out.println(order.calculateTotalPrice());
+        order.addItem(item1);
+        System.out.println(order.calculateTotalPrice());
+        order.addItem(item2);
+        System.out.println(order.calculateTotalPrice());
+        order.addItem(item3);
+        System.out.println(order.calculateTotalPrice());
+        order.removeItem(item1);
+        System.out.println(order.calculateTotalPrice());
+        order.removeItem(item2);
+        System.out.println(order.calculateTotalPrice());
+        order.removeItem(item3);
+        System.out.println(order.calculateTotalPrice());
     }
 }
