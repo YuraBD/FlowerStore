@@ -1,41 +1,19 @@
-import decorators.BasketDecorator;
-import decorators.ItemDecorator;
-import decorators.RibbonDecorator;
+import conection.Connection;
 import delivery.PostDeliveryStrategy;
 import flowerstore.Item;
-import decorators.PaperDecorator;
 import flowerstore.*;
+import order.FastOrderConstructor;
+import order.Order;
 import payment.CreditCardPaymentStrategy;
+import user.Receiver;
+import user.Sender;
+import user.User;
 
 public class Main {
     public static void main(String[] args) {
-        Item item1 = new Flower(FlowerType.ROSE, new int[]{255,0,0}, 100);
-        Item item2 = new FlowerPack(new Flower(FlowerType.ROSE, new int[]{255,0,0}, 100), 10);
-        Item item3 = new FlowerBucket();
-        FlowerPack flowerPack1 = new FlowerPack(new Flower(FlowerType.ROSE, new int[]{255,0,0}, 100), 7);
-        FlowerPack flowerPack2 = new FlowerPack(new Flower(FlowerType.CHAMOMILE, new int[]{255,0,255}, 10), 7);
-        ((FlowerBucket)item3).addFlowerPack(flowerPack1);
-        ((FlowerBucket)item3).addFlowerPack(flowerPack2);
-        System.out.println(item1.getPrice());
-        System.out.println(item2.getPrice());
-        System.out.println(item3.getPrice());
-        Order order = new Order();
-        System.out.println(order.calculateTotalPrice());
-        order.addItem(item1);
-        System.out.println(order.calculateTotalPrice());
-        order.addItem(item2);
-        System.out.println(order.calculateTotalPrice());
-        order.addItem(item3);
-        System.out.println(order.calculateTotalPrice());
-        order.processOrder();
-        order.setDeliveryStrategy(new PostDeliveryStrategy());
-        order.setPaymentStrategy(new CreditCardPaymentStrategy());
-        order.processOrder();
-        order.removeItem(item1);
-        System.out.println(order.calculateTotalPrice());
-        order.removeItem(item2);
-        System.out.println(order.calculateTotalPrice());
-        order.removeItem(item3);
-        System.out.println(order.calculateTotalPrice());
+       User sd1 = new Sender();
+       User sd2 = new Sender();
+       System.out.println(sd1.getId());
+        System.out.println(sd2.getId());
     }
 }
